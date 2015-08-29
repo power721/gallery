@@ -24,7 +24,7 @@ public class ImageController extends RestController {
         try {
             setAttr("images", parser.parse(url));
         } catch (IOException e) {
-            e.printStackTrace();
+            setAttr("error", e.getMessage());
         }
     }
 
