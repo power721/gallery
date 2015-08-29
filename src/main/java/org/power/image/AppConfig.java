@@ -1,4 +1,4 @@
-package org.power.image.qsbk;
+package org.power.image;
 
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
@@ -15,7 +15,6 @@ import com.jfinal.render.Render;
 import com.jfinal.rest.RestKit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.power.image.qsbk.api.IndexController;
 
 
 public class AppConfig extends JFinalConfig {
@@ -52,13 +51,11 @@ public class AppConfig extends JFinalConfig {
 
     @Override
     public void configRoute(Routes me) {
-        me.add("/", IndexController.class);
-
         String packagePath = "/" + this.getClass().getPackage().getName().replace('.', '/');
         String classPath = this.getClass().getResource("").getPath().replace(packagePath, "");
         LOGGER.trace("configRoute {}", classPath);
         LOGGER.trace(this.getClass().getPackage().getName());
-        RestKit.buildRoutes("/v0", classPath, me, "org.power.image.qsbk.api");
+        RestKit.buildRoutes("/v0", classPath, me, "org.power.image.api");
     }
 
     @Override

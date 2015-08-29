@@ -1,4 +1,4 @@
-package org.power.image.qsbk.utils;
+package org.power.image.utils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +16,6 @@ public class QiushibaikeParser implements Parser {
     private static final Logger LOGGER = LogManager.getLogger(Parser.class);
 
     public List<Image> parse(String url) throws IOException {
-//        List<String> imagesUrl = new ArrayList<String>();
         List<Image> images = new ArrayList<Image>();
         String html = HtmlUtils.getHtml(url);
 
@@ -40,7 +39,6 @@ public class QiushibaikeParser implements Parser {
             String content = (String) item.get("content");
 
             String imageUrl = "http://pic.qiushibaike.com/system/pictures/" + prefix + "/" + imageId + "/medium/" + image;
-//            imagesUrl.add(imageUrl);
             LOGGER.debug(imageUrl);
             images.add(new Image(imageId, imageUrl, content));
         }

@@ -55,7 +55,7 @@
                     });
 
     function loadImages (amount) {
-         $.getJSON("v0/images/" + page, function(data) {
+         $.getJSON("v0/db/images/" + page, function(data) {
                 $.each( data.images, function(key, val) {
                     if ($('#'+ val.id).length == 0) {
                         $("#content").append('<div class="image"><img id="' + val.id + '" src="' + val.src + '" title="' + val.alt + '"/></div>');

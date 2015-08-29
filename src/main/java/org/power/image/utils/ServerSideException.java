@@ -1,4 +1,4 @@
-package org.power.image.qsbk.utils;
+package org.power.image.utils;
 
 import java.io.IOException;
 
