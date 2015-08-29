@@ -1,4 +1,6 @@
-package org.power.image.utils;
+package org.power.image.parser;
+
+import org.power.image.bean.Image;
 
 import java.io.IOException;
 import java.util.List;

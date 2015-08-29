@@ -1,10 +1,11 @@
-package org.power.image.utils;
+package org.power.image.bean;
 
 public class Image {
 
     private String id;
     private String src;
     private String alt;
+    private String href;
 
     public Image() {
     }
@@ -42,6 +43,14 @@ public class Image {
 
     public void setAlt(String alt) {
         this.alt = alt;
+    }
+
+    public String getHref() {
+        return href;
+    }
+
+    public void setHref(String href) {
+        this.href = href;
     }
 
 }
