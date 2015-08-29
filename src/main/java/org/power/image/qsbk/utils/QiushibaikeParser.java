@@ -42,7 +42,7 @@ public class QiushibaikeParser implements Parser {
             String imageUrl = "http://pic.qiushibaike.com/system/pictures/" + prefix + "/" + imageId + "/medium/" + image;
 //            imagesUrl.add(imageUrl);
             LOGGER.debug(imageUrl);
-            images.add(new Image(imageUrl, content));
+            images.add(new Image(imageId, imageUrl, content));
         }
 
         LOGGER.info("Get {} images url", images.size());

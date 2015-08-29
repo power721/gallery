@@ -11,7 +11,7 @@
     <!-- Place favicon.ico in the root directory -->
 
     <script src="jquery-1.11.3.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+    <script src="ScrollMagic.min.js"></script>
     <style>
         div.image {
         float: left;
@@ -57,7 +57,9 @@
     function loadImages (amount) {
          $.getJSON("/v0/images/" + page, function(data) {
                 $.each( data.images, function(key, val) {
-                    $("#content").append('<div class="image"><img src="' + val.src + '" title="' + val.alt + '"/></div>');
+                    if ($('#'+ val.id) != null) {
+                        $("#content").append('<div class="image"><img id="' + val.id + '" src="' + val.src + '" title="' + val.alt + '"/></div>');
+                    }
               });
             });
 
@@ -68,6 +70,7 @@
         }
 
     loadImages(page);
+
 </script>
 
 </body>

@@ -2,6 +2,7 @@ package org.power.image.qsbk.utils;
 
 public class Image {
 
+    private String id;
     private String src;
     private String alt;
 
@@ -11,6 +12,20 @@ public class Image {
     public Image(String src, String alt) {
         this.src = src;
         this.alt = alt;
+    }
+
+    public Image(String id, String src, String alt) {
+        this.id = id;
+        this.src = src;
+        this.alt = alt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSrc() {
@@ -28,4 +43,5 @@ public class Image {
     public void setAlt(String alt) {
         this.alt = alt;
     }
+
 }
