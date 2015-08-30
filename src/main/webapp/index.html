@@ -22,9 +22,9 @@
 
 <!-- Add your site or application content here -->
 <div class="fixed-top well">
-    <button data-type="qsbk" class="gallery btn btn-block">qsbk</button>
-    <button data-type="dbmz" class="gallery btn btn-block">dbmz</button>
-    <button data-type="haha" class="gallery btn btn-block">haha</button>
+    <button id="qsbk" data-type="qsbk" class="gallery btn btn-block">qsbk</button>
+    <button id="dbmz" data-type="dbmz" class="gallery btn btn-block">dbmz</button>
+    <button id="haha" data-type="haha" class="gallery btn btn-block">haha</button>
 </div>
 <div id="content"></div>
 <div id="loader">
@@ -36,6 +36,7 @@
 <script type="text/javascript">
     var page = 1;
     var type = 'haha';
+    $('#' + type).addClass('btn-primary');
     // init controller
     var controller = new ScrollMagic.Controller();
 
@@ -77,6 +78,8 @@
 
     $('.gallery').click(function() {
         var old = type;
+        $('.gallery').removeClass('btn-primary');
+        $(this).addClass('btn-primary');
         type = $(this).data('type');
 
         if (type != old) {
