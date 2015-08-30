@@ -10,11 +10,12 @@ import org.power.image.parser.QiushibaikeParser;
 
 import java.io.IOException;
 
-@API("/images")
+@API("/")
 public class ImageController extends RestController {
 
     @GET
-    public void index() {
+    @API("/qsbk/images")
+    public void qsbk() {
         int page = 1;
         if (getPara() != null) {
             page = getParaToInt();
@@ -32,8 +33,8 @@ public class ImageController extends RestController {
     }
 
     @GET
-    @API("/db/images")
-    public void db() {
+    @API("/dbmz/images")
+    public void dbmz() {
         int page = 1;
         if (getPara() != null) {
             page = getParaToInt();

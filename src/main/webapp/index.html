@@ -12,17 +12,7 @@
 
     <script src="js/jquery-1.11.3.min.js"></script>
     <script src="js/ScrollMagic.min.js"></script>
-    <style>
-        div.image {
-        float: left;
-        margin-bottom: 10px;
-        margin-left: 10px;
-        }
-        #loader {
-        float: right;
-        margin-bottom: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <!--[if lt IE 8]>
@@ -31,15 +21,21 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
+<div class="fixed-top well">
+    <button data-type="qsbk" class="gallery btn btn-block">qsbk</button>
+    <button data-type="dbmz" class="gallery btn btn-block">dbmz</button>
+    <button data-type="haha" class="gallery btn btn-block">haha</button>
+</div>
 <div id="content"></div>
 <div id="loader">
-    <img src="loading.gif">
+    <img src="image/loading.gif">
     <span onclick="reset()">LOADING...</span>
 </div>
 
 
 <script type="text/javascript">
     var page = 1;
+    var type = 'qsbk';
     // init controller
     var controller = new ScrollMagic.Controller();
 
@@ -54,11 +50,15 @@
                         }
                     });
 
-    function loadImages (amount) {
-         $.getJSON("v0/images/" + page, function(data) {
+    function loadImages(amount) {
+         $.getJSON('v0/' + type + '/images/' + page, function(data) {
                 $.each( data.images, function(key, val) {
                     if ($('#'+ val.id).length == 0) {
-                        $("#content").append('<div class="image"><img id="' + val.id + '" src="' + val.src + '" title="' + val.alt + '"/></div>');
+                        var img = '<img class="img-polaroid" id="' + val.id + '" src="' + val.src + '" title="' + val.alt + '"/>';
+                        if (val.href != null) {
+                            img = '<a target="_blank" href="' + val.href + '">' + img + '</a>';
+                        }
+                        $("#content").append('<div class="image">' + img + '</div>');
                     }
               });
             });
@@ -69,11 +69,22 @@
             page = page + 1;
         }
 
-    loadImages(page);
+    //loadImages(page);
 
     function reset() {
         page = 1;
     }
+
+    $('.gallery').click(function() {
+        var old = type;
+        type = $(this).data('type');
+
+        if (type != old) {
+            page = 1;
+            $('#content').empty();
+        }
+    });
+
 
 </script>
 

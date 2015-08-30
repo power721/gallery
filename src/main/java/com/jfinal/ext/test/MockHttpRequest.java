@@ -16,7 +16,6 @@
 package com.jfinal.ext.test;
 
 import com.google.common.collect.Maps;
-import com.jfinal.ext.test.MockServletInputStream;
 
 import javax.servlet.AsyncContext;
 import javax.servlet.DispatcherType;
