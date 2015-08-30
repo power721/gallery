@@ -1,4 +1,4 @@
-package org.power.image.parser;
+package org.power.gallery.parser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,8 +6,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.power.image.bean.Image;
-import org.power.image.utils.HtmlUtils;
+import org.power.gallery.bean.Image;
+import org.power.gallery.utils.HtmlUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class DBmzParser implements Parser {
         for (Element element : elements) {
             String imageUrl = element.attr("src");
 
-            LOGGER.debug("image url: {}", imageUrl);
+            LOGGER.debug("gallery url: {}", imageUrl);
             if (imageUrl != null) {
                 String title = element.attr("title");
                 String imageId = getImageId(imageUrl);

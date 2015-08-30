@@ -1,4 +1,4 @@
-package org.power.image.utils;
+package org.power.gallery.utils;
 
 import java.io.IOException;
 

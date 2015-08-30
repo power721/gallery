@@ -1,4 +1,4 @@
-package org.power.image.parser;
+package org.power.gallery.parser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,8 +6,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.power.image.bean.Image;
-import org.power.image.utils.HtmlUtils;
+import org.power.gallery.bean.Image;
+import org.power.gallery.utils.HtmlUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;

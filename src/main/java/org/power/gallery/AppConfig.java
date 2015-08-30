@@ -1,4 +1,4 @@
-package org.power.image;
+package org.power.gallery;
 
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
@@ -55,7 +55,7 @@ public class AppConfig extends JFinalConfig {
         String classPath = this.getClass().getResource("").getPath().replace(packagePath, "");
         LOGGER.trace("configRoute {}", classPath);
         LOGGER.trace(this.getClass().getPackage().getName());
-        RestKit.buildRoutes("/v0", classPath, me, "org.power.image.api");
+        RestKit.buildRoutes("/v0", classPath, me, "org.power.gallery.api");
     }
 
     @Override

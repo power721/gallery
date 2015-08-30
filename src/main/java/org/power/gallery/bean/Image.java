@@ -1,4 +1,4 @@
-package org.power.image.bean;
+package org.power.gallery.bean;
 
 public class Image {
 

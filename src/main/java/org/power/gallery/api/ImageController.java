@@ -1,12 +1,12 @@
-package org.power.image.api;
+package org.power.gallery.api;
 
 import com.jfinal.rest.API;
 import com.jfinal.rest.GET;
 import com.jfinal.rest.RestController;
-import org.power.image.parser.DBmzParser;
-import org.power.image.parser.HahaParser;
-import org.power.image.parser.Parser;
-import org.power.image.parser.QiushibaikeParser;
+import org.power.gallery.parser.DBmzParser;
+import org.power.gallery.parser.HahaParser;
+import org.power.gallery.parser.Parser;
+import org.power.gallery.parser.QiushibaikeParser;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package org.power.image.utils;
+package org.power.gallery.utils;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
