@@ -35,14 +35,17 @@ public class QiushibaikeParser implements Parser {
         LOGGER.debug("count: " + jsonObject.get("count"));
         for (int i = 0; i < items.size(); i++) {
             JSONObject item = (JSONObject) items.get(i);
-            String image = (String) item.get("image");
+            String imageSrc = (String) item.get("image");
             String imageId = String.valueOf(item.get("id"));
             String prefix = imageId.substring(0, imageId.length() - 4);
             String content = (String) item.get("content");
+            String href = "http://www.qiushibaike.com/article/" + imageId;
 
-            String imageUrl = "http://pic.qiushibaike.com/system/pictures/" + prefix + "/" + imageId + "/medium/" + image;
+            String imageUrl = "http://pic.qiushibaike.com/system/pictures/" + prefix + "/" + imageId + "/medium/" + imageSrc;
             LOGGER.debug(imageUrl);
-            images.add(new Image(imageId, imageUrl, content));
+            Image image = new Image(imageId, imageUrl, content);
+            image.setHref(href);
+            images.add(image);
         }
 
         LOGGER.info("Get {} images url", images.size());
