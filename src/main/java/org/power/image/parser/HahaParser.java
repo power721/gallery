@@ -31,11 +31,12 @@ public class HahaParser implements Parser {
                 String title = element.attr("alt");
                 String imageId = getImageId(imageUrl);
                 imageUrl = imageUrl.replace("/normal/", "/middle/");
-                String href = "http://www.haha.mx/" + element.parent().attr("href");
-
-                Image image = new Image(imageId, imageUrl, title);
-                image.setHref(href);
-                images.add(image);
+                String href = "http://www.haha.mx" + element.parent().attr("href");
+                if (href.contains("/joke/")) {
+                    Image image = new Image(imageId, imageUrl, title);
+                    image.setHref(href);
+                    images.add(image);
+                }
             }
         }
 
