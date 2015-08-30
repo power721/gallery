@@ -52,23 +52,27 @@
                     });
 
     function loadImages(amount) {
-         $.getJSON('v0/' + type + '/images/' + page, function(data) {
-                $.each( data.images, function(key, val) {
-                    if ($('#'+ val.id).length == 0) {
-                        var img = '<img class="img-polaroid" id="' + val.id + '" src="' + val.src + '" title="' + val.alt + '"/>';
-                        if (val.href != null) {
-                            img = '<a target="_blank" href="' + val.href + '">' + img + '</a>';
-                        }
-                        $("#content").append('<div class="image">' + img + '</div>');
-                    }
-              });
-            });
-
-            // "loading" done -> revert to normal state
-            scene.update(); // make sure the scene gets the new start position
-            $("#loader").removeClass("active");
-            page = page + 1;
+        if ($('img').length > 500) {
+            $('#content').empty();
         }
+
+        $.getJSON('v0/' + type + '/images/' + page, function(data) {
+            $.each( data.images, function(key, val) {
+                if ($('#'+ val.id).length == 0) {
+                    var img = '<img class="img-polaroid" id="' + val.id + '" src="' + val.src + '" title="' + val.alt + '"/>';
+                    if (val.href != null) {
+                        img = '<a target="_blank" href="' + val.href + '">' + img + '</a>';
+                    }
+                    $("#content").append('<div class="image">' + img + '</div>');
+                }
+          });
+        });
+
+        // "loading" done -> revert to normal state
+        scene.update(); // make sure the scene gets the new start position
+        $("#loader").removeClass("active");
+        page = page + 1;
+    }
 
     //loadImages(page);
 
