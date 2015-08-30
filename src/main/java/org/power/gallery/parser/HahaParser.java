@@ -28,6 +28,10 @@ public class HahaParser implements Parser {
 
             LOGGER.debug("gallery url: {}", imageUrl);
             if (imageUrl != null) {
+                if (imageUrl.contains("/pic_ad/")) {
+                    continue;
+                }
+
                 String title = element.attr("alt");
                 String imageId = getImageId(imageUrl);
                 imageUrl = imageUrl.replace("/normal/", "/middle/");
