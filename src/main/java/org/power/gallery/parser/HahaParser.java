@@ -17,18 +17,11 @@ public class HahaParser implements Parser {
 
     private static final Logger LOGGER = LogManager.getLogger(HahaParser.class);
 
-    private static int maxPage = 1;
-
     public List<Image> parse(String url) throws IOException {
         List<Image> images = new ArrayList<Image>();
         String html = HtmlUtils.getHtml(url);
         Document doc = Jsoup.parse(html);
         Elements elements = doc.select("#joke-grid img");
-
-        Elements paginations = doc.select("a.pagination-next");
-        for (Element pagination : paginations) {
-            pagination.text();
-        }
 
         for (Element element : elements) {
             String imageUrl = element.attr("src");
@@ -53,10 +46,6 @@ public class HahaParser implements Parser {
 
         LOGGER.info("Get {} images url", images.size());
         return images;
-    }
-
-    public static int getMaxPage() {
-        return maxPage;
     }
 
     private String getImageId(String imageUrl) {

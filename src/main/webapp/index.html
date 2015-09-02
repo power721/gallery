@@ -25,6 +25,7 @@
 <div class="fixed-top well">
     <button id="qsbk" data-type="qsbk" class="gallery btn btn-block">qsbk</button>
     <button id="dbmz" data-type="dbmz" class="gallery btn btn-block">dbmz</button>
+    <button id="meizi" data-type="meizi" class="gallery btn btn-block">meizi</button>
     <button id="haha" data-type="haha" class="gallery btn btn-block">haha</button>
 </div>
 <div id="content"></div>
@@ -67,13 +68,13 @@
                     $("#content").append('<div class="image">' + img + '</div>');
                 }
           });
-        });
 
         // "loading" done -> revert to normal state
         scene.update(); // make sure the scene gets the new start position
         $("#loader").removeClass("active");
         Cookies.set('page-' + type, page);
         page = page + 1;
+        });
     }
 
     //loadImages(page);
@@ -98,6 +99,9 @@
         type = $(this).data('type');
 
         page = getPage();
+        if (console) {
+            console.log(type + '-' + page);
+        }
         $('#content').empty();
     });
 

@@ -19,7 +19,7 @@ public final class HtmlUtils {
 
     private static final Logger LOGGER = LogManager.getLogger(HtmlUtils.class);
 
-    public static String getHtml(String url) throws IOException {
+    public static String getHtml(final String url, final String encoding) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpGet httpget = new HttpGet(url);
 
@@ -33,7 +33,7 @@ public final class HtmlUtils {
                 int status = response.getStatusLine().getStatusCode();
                 if (status >= 200 && status < 300) {
                     HttpEntity entity = response.getEntity();
-                    return entity != null ? EntityUtils.toString(entity) : null;
+                    return entity != null ? EntityUtils.toString(entity, encoding) : null;
                 } else if (status >= 500 && status <= 599) {
                     throw new ServerSideException("Unexpected response status: " + status);
                 } else {
@@ -51,6 +51,10 @@ public final class HtmlUtils {
         } finally {
             IOUtils.closeQuietly(httpClient);
         }
+    }
+
+    public static String getHtml(final String url) throws IOException {
+        return getHtml(url, "UTF-8");
     }
 
 }

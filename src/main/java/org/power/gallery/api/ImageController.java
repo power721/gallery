@@ -5,6 +5,7 @@ import com.jfinal.rest.GET;
 import com.jfinal.rest.RestController;
 import org.power.gallery.parser.DBmzParser;
 import org.power.gallery.parser.HahaParser;
+import org.power.gallery.parser.MeizituParser;
 import org.power.gallery.parser.Parser;
 import org.power.gallery.parser.QiushibaikeParser;
 
@@ -61,6 +62,26 @@ public class ImageController extends RestController {
 
         String url = "http://www.haha.mx/pic/new/" + page + "?r=" + System.currentTimeMillis();
         Parser parser = new HahaParser();
+
+        setAttr("page", page);
+        try {
+            setAttr("images", parser.parse(url));
+        } catch (IOException e) {
+            setAttr("error", e.getMessage());
+        }
+    }
+
+    @GET
+    @API("/meizi/images")
+    public void meizi() {
+        int page = 1;
+        if (getPara() != null) {
+            page = getParaToInt();
+        }
+
+        int newPage = (page + 29) / 30;
+        String url = "http://www.meizitu.com/a/list_1_" + newPage + ".html";
+        Parser parser = new MeizituParser(page);
 
         setAttr("page", page);
         try {
