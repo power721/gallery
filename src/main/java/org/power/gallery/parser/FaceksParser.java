@@ -13,19 +13,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MeizituParser implements Parser {
+public class FaceksParser implements Parser {
 
-    private static final Logger LOGGER = LogManager.getLogger(MeizituParser.class);
+    private static final Logger LOGGER = LogManager.getLogger(FaceksParser.class);
 
     private int page;
 
-    public MeizituParser(int page) {
+    public FaceksParser(int page) {
         this.page = page - 1;
     }
 
     public List<Image> parse(String url) throws IOException {
         List<Image> images = null;
-        String html = HtmlUtils.getHtml(url, "GB2312");
+        String html = HtmlUtils.getHtml(url);
         Document doc = Jsoup.parse(html);
         Elements elements = doc.select(".pic img");
 
@@ -50,16 +50,16 @@ public class MeizituParser implements Parser {
 
     private List<Image> getImages(String url) throws IOException {
         List<Image> images = new ArrayList<Image>();
-        String html = HtmlUtils.getHtml(url, "GB2312");
+        String html = HtmlUtils.getHtml(url);
         Document doc = Jsoup.parse(html);
-        Elements elements = doc.select("#picture img");
+        Elements elements = doc.select(".ctc img");
 
         for (Element element : elements) {
             String imageUrl = element.attr("src");
 
             LOGGER.debug("gallery url: {}", imageUrl);
             if (imageUrl != null) {
-                String title = element.attr("alt");
+                String title = doc.select(".text p").text();
                 String imageId = getImageId(imageUrl);
 
                 Image image = new Image(imageId, imageUrl, title);

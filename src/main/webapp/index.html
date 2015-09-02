@@ -23,10 +23,11 @@
 
 <!-- Add your site or application content here -->
 <div class="fixed-top well">
-    <button id="qsbk" data-type="qsbk" class="gallery btn btn-block">qsbk</button>
-    <button id="dbmz" data-type="dbmz" class="gallery btn btn-block">dbmz</button>
-    <button id="meizi" data-type="meizi" class="gallery btn btn-block">meizi</button>
-    <button id="haha" data-type="haha" class="gallery btn btn-block">haha</button>
+    <button id="qsbk" class="gallery btn btn-block">qsbk</button>
+    <button id="dbmz" class="gallery btn btn-block">dbmz</button>
+    <button id="meizi" class="gallery btn btn-block">meizi</button>
+    <button id="sexy" class="gallery btn btn-block">sexy</button>
+    <button id="haha" class="gallery btn btn-block">haha</button>
 </div>
 <div id="content"></div>
 <div id="loader">
@@ -96,7 +97,7 @@
         var old = type;
         $('.gallery').removeClass('btn-primary');
         $(this).addClass('btn-primary');
-        type = $(this).data('type');
+        type = $(this).attr('id');
 
         page = getPage();
         if (console) {
