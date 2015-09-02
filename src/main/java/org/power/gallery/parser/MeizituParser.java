@@ -79,7 +79,6 @@ public class MeizituParser implements Parser {
     }
 
     private String getImageId(String imageUrl) {
-        int start = imageUrl.lastIndexOf('/');
         int end = imageUrl.lastIndexOf('.');
         String[] parts = imageUrl.substring(0, end).split("/");
         int n = parts.length;

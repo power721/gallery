@@ -81,10 +81,8 @@ public class FaceksParser implements Parser {
     private String getImageId(String imageUrl) {
         int start = imageUrl.lastIndexOf('/');
         int end = imageUrl.lastIndexOf('.');
-        String[] parts = imageUrl.substring(0, end).split("/");
-        int n = parts.length;
 
-        return parts[n - 4] + parts[n - 3] + parts[n - 2] + parts[n - 1];
+        return imageUrl.substring(start + 1, end);
     }
 
 }
