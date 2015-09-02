@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.power.gallery.bean.Image;
 import org.power.gallery.utils.HtmlUtils;
+import org.power.gallery.utils.LRUCache;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class FaceksParser implements Parser {
 
     private static final Logger LOGGER = LogManager.getLogger(FaceksParser.class);
 
+    private static LRUCache<String, String> cache = new LRUCache<String, String>(10);
+
     private int page;
 
     public FaceksParser(int page) {
@@ -25,7 +28,11 @@ public class FaceksParser implements Parser {
 
     public List<Image> parse(String url) throws IOException {
         List<Image> images = null;
-        String html = HtmlUtils.getHtml(url);
+        String html = cache.get(url);
+        if (html == null) {
+            html = HtmlUtils.getHtml(url, "GB2312");
+            cache.put(url, html);
+        }
         Document doc = Jsoup.parse(html);
         Elements elements = doc.select(".pic img");
 
