@@ -37,9 +37,14 @@
 
 
 <script type="text/javascript">
-    var type = 'haha';
+    var data = Cookies.getJSON('data');
+    if (!data) {
+        data = {'type': 'haha', 'dbmz': 1, 'meizi': 1, 'sexy': 1, 'qsbk': 1, 'haha': 1};
+        Cookies.set('data', data);
+    }
     var page = getPage();
-    $('#' + type).addClass('btn-primary');
+
+    $('#' + data.type).addClass('btn-primary');
     // init controller
     var controller = new ScrollMagic.Controller();
 
@@ -59,8 +64,8 @@
             $('#content').empty();
         }
 
-        $.getJSON('v0/' + type + '/images/' + page, function(data) {
-            $.each( data.images, function(key, val) {
+        $.getJSON('v0/' + data.type + '/images/' + page, function(response) {
+            $.each( response.images, function(key, val) {
                 if ($('#'+ val.id).length == 0) {
                     var img = '<img class="img-polaroid" id="' + val.id + '" src="' + val.src + '" title="' + val.alt + '"/>';
                     if (val.href != null) {
@@ -68,48 +73,47 @@
                     }
                     $("#content").append('<div class="image">' + img + '</div>');
                 }
-          });
+            });
 
-        // "loading" done -> revert to normal state
-        scene.update(); // make sure the scene gets the new start position
-        $("#loader").removeClass("active");
-        Cookies.set('page-' + type, page);
-        page = page + 1;
+            Cookies.set('data', data);
+            // "loading" done -> revert to normal state
+            scene.update(); // make sure the scene gets the new start position
+            $("#loader").removeClass("active");
+            setPage(page + 1);
         });
     }
 
     //loadImages(page);
 
     function reset() {
-        page = 1;
-        Cookies.set('page-' + type, page);
+        setPage(1);
     }
 
     function getPage() {
-        var page = Cookies.get('page-' + type);
-        if (!page) {
-            page = 1;
-        }
+        var page = data[data.type];
         return parseInt(page);
     }
 
+    function setPage(index) {
+        page = index;
+        data[data.type] = index;
+    }
+
     $('.gallery').click(function() {
-        var old = type;
         $('.gallery').removeClass('btn-primary');
         $(this).addClass('btn-primary');
-        type = $(this).attr('id');
+        data = Cookies.getJSON('data');
+        data.type = $(this).attr('id');
+        Cookies.set('data', data);
 
         page = getPage();
-        if (console) {
-            console.log(type + '-' + page);
-        }
         $('#content').empty();
     });
 
     $('.gallery').dblclick(function() {
         reset();
+        Cookies.set('data', data);
     });
-
 
 </script>
 
