@@ -17,6 +17,7 @@ public class DBmzParser implements Parser {
 
     private static final Logger LOGGER = LogManager.getLogger(DBmzParser.class);
 
+    // curl -X POST -d 'queryType=rank&pageIndex=1&m=images' 'http://api.xiaojianjian.net/api/dbmeinv.htm'
     public List<Image> parse(String url) throws IOException {
         List<Image> images = new ArrayList<Image>();
         String html = HtmlUtils.getHtml(url);

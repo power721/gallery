@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
+    <title>Gallery -- Powered by Har01d</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,6 +11,7 @@
     <!-- Place favicon.ico in the root directory -->
 
     <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/js.cookie.js"></script>
     <script src="js/ScrollMagic.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -34,8 +35,8 @@
 
 
 <script type="text/javascript">
-    var page = 1;
     var type = 'haha';
+    var page = getPage();
     $('#' + type).addClass('btn-primary');
     // init controller
     var controller = new ScrollMagic.Controller();
@@ -71,6 +72,7 @@
         // "loading" done -> revert to normal state
         scene.update(); // make sure the scene gets the new start position
         $("#loader").removeClass("active");
+        Cookies.set('page-' + type, page);
         page = page + 1;
     }
 
@@ -78,6 +80,15 @@
 
     function reset() {
         page = 1;
+        Cookies.set('page-' + type, page);
+    }
+
+    function getPage() {
+        var page = Cookies.get('page-' + type);
+        if (!page) {
+            page = 1;
+        }
+        return parseInt(page);
     }
 
     $('.gallery').click(function() {
@@ -86,10 +97,12 @@
         $(this).addClass('btn-primary');
         type = $(this).data('type');
 
-        //if (type != old) {
-            page = 1;
-            $('#content').empty();
-        //}
+        page = getPage();
+        $('#content').empty();
+    });
+
+    $('.gallery').dblclick(function() {
+        reset();
     });
 
 
