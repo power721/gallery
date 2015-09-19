@@ -23,6 +23,7 @@
 
 <!-- Add your site or application content here -->
 <div class="fixed-top well">
+    <span id="page"></span>
     <button id="dbmz" class="gallery btn btn-block">dbmz</button>
     <button id="meizi" class="gallery btn btn-block">meizi</button>
     <button id="sexy" class="gallery btn btn-block">sexy</button>
@@ -80,6 +81,7 @@
             // "loading" done -> revert to normal state
             scene.update(); // make sure the scene gets the new start position
             $("#loader").removeClass("active");
+            $('#page').text(page);
             setPage(page + 1);
         });
     }
@@ -92,6 +94,7 @@
 
     function getPage() {
         var page = data[data.type];
+        $('#page').text(page);
         return parseInt(page);
     }
 
