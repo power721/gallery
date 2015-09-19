@@ -61,6 +61,7 @@
 
     function loadImages(amount) {
         if ($('img').length > 200) {
+            sleep(5000);
             $('#content').empty();
         }
 
@@ -97,6 +98,15 @@
     function setPage(index) {
         page = index;
         data[data.type] = index;
+    }
+
+    function sleep(milliseconds) {
+      var start = new Date().getTime();
+      for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds){
+          break;
+        }
+      }
     }
 
     $('.gallery').click(function() {
