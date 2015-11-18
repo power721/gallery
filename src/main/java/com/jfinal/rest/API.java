@@ -25,9 +25,6 @@ import java.lang.annotation.Target;
  * <p>放在controller上，配置restful请求路径</p>
  * Created by peak on 2015/2/9.
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.METHOD})
-@Documented
-public @interface API {
+@Retention(RetentionPolicy.RUNTIME) @Target({ElementType.TYPE, ElementType.METHOD}) @Documented public @interface API {
     String value();
 }

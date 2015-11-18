@@ -24,8 +24,5 @@ import java.lang.annotation.Target;
 /**
  * Indicates that the annotated method responds to HTTP PUT requests
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-@Documented
-public @interface PUT {
+@Retention(RetentionPolicy.RUNTIME) @Target(ElementType.METHOD) @Documented public @interface PUT {
 }

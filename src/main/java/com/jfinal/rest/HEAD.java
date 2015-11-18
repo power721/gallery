@@ -24,8 +24,5 @@ import java.lang.annotation.Target;
 /**
  * Indicates that the annotated method responds to HTTP HEAD requests
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-@Documented
-public @interface HEAD {
+@Retention(RetentionPolicy.RUNTIME) @Target(ElementType.METHOD) @Documented public @interface HEAD {
 }

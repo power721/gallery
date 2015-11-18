@@ -127,8 +127,7 @@ class RestPath {
         }
     }
 
-    @Override
-    public boolean equals(Object obj) {
+    @Override public boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
@@ -150,8 +149,7 @@ class RestPath {
         return true;
     }
 
-    @Override
-    public int hashCode() {
+    @Override public int hashCode() {
         int hash = 0;
         for (Segment segment : segments) {
             hash = hash * 13 + segment.hashCode();
@@ -247,8 +245,7 @@ class RestPath {
          */
         String name;
 
-        @Override
-        public boolean equals(Object obj) {
+        @Override public boolean equals(Object obj) {
             if (this == obj) {
                 return true;
             }
@@ -261,8 +258,7 @@ class RestPath {
             return isVariable == other.isVariable && name.equals(other.name);
         }
 
-        @Override
-        public int hashCode() {
+        @Override public int hashCode() {
             return name.hashCode();
         }
     }

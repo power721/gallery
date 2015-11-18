@@ -53,4 +53,12 @@ public class Image {
         this.href = href;
     }
 
+    @Override public String toString() {
+        return "Image{" +
+            "id='" + id + '\'' +
+            ", src='" + src + '\'' +
+            ", alt='" + alt + '\'' +
+            ", href='" + href + '\'' +
+            '}';
+    }
 }

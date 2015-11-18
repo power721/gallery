@@ -24,8 +24,5 @@ import java.lang.annotation.Target;
 /**
  * Indicates that the annotated method responds to HTTP POST requests
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-@Documented
-public @interface POST {
+@Retention(RetentionPolicy.RUNTIME) @Target(ElementType.METHOD) @Documented public @interface POST {
 }

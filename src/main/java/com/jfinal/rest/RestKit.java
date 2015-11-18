@@ -55,8 +55,8 @@ public final class RestKit {
                 continue;
             }
 
-            @SuppressWarnings("unchecked")
-            Class<? extends Controller> controllerClass = (Class<? extends Controller>) clazz;
+            @SuppressWarnings("unchecked") Class<? extends Controller> controllerClass =
+                (Class<? extends Controller>) clazz;
             API api = clazz.getAnnotation(API.class);
             String classRestPath = "";
             if (api != null) {

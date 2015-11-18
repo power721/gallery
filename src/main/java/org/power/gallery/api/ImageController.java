@@ -4,26 +4,26 @@ import com.jfinal.rest.API;
 import com.jfinal.rest.GET;
 import com.jfinal.rest.RestController;
 import org.power.gallery.parser.DBmzParser;
+import org.power.gallery.parser.DuoWanParser;
 import org.power.gallery.parser.FaceksParser;
 import org.power.gallery.parser.HahaParser;
 import org.power.gallery.parser.MeizituParser;
 import org.power.gallery.parser.Parser;
 import org.power.gallery.parser.QiushibaikeParser;
+import org.power.gallery.utils.DuoWanUtils;
 
 import java.io.IOException;
 
-@API("/")
-public class ImageController extends RestController {
+@API("/") public class ImageController extends RestController {
 
-    @GET
-    @API("/qsbk/images")
-    public void qsbk() {
+    @GET @API("/qsbk/images") public void qsbk() {
         int page = 1;
         if (getPara() != null) {
             page = getParaToInt();
         }
 
-        String url = "http://m2.qiushibaike.com/article/list/imgrank?count=20&rqcnt=4&page=" + page + "&r=" + System.currentTimeMillis();
+        String url = "http://m2.qiushibaike.com/article/list/imgrank?count=20&rqcnt=4&page=" + page + "&r=" + System
+            .currentTimeMillis();
         Parser parser = new QiushibaikeParser();
 
         setAttr("page", page);
@@ -34,9 +34,7 @@ public class ImageController extends RestController {
         }
     }
 
-    @GET
-    @API("/dbmz/images")
-    public void dbmz() {
+    @GET @API("/dbmz/images") public void dbmz() {
         int page = 1;
         if (getPara() != null) {
             page = getParaToInt();
@@ -53,9 +51,7 @@ public class ImageController extends RestController {
         }
     }
 
-    @GET
-    @API("/haha/images")
-    public void haha() {
+    @GET @API("/haha/images") public void haha() {
         int page = 1;
         if (getPara() != null) {
             page = getParaToInt();
@@ -72,9 +68,7 @@ public class ImageController extends RestController {
         }
     }
 
-    @GET
-    @API("/meizi/images")
-    public void meizi() {
+    @GET @API("/meizi/images") public void meizi() {
         int page = 1;
         if (getPara() != null) {
             page = getParaToInt();
@@ -92,9 +86,7 @@ public class ImageController extends RestController {
         }
     }
 
-    @GET
-    @API("/sexy/images")
-    public void sexy() {
+    @GET @API("/sexy/images") public void sexy() {
         int page = 1;
         if (getPara() != null) {
             page = getParaToInt();
@@ -103,6 +95,25 @@ public class ImageController extends RestController {
         int newPage = (page + 29) / 30;
         String url = "http://sexy.faceks.com/?page=" + newPage;
         Parser parser = new FaceksParser(page);
+
+        setAttr("page", page);
+        try {
+            setAttr("images", parser.parse(url));
+        } catch (IOException e) {
+            setAttr("error", e.getMessage());
+        }
+    }
+
+    @GET @API("/duowan/images") public void duowan() {
+        int page = 1;
+        if (getPara() != null) {
+            page = getParaToInt();
+        }
+        DuoWanUtils.updateLatestImagePageID();
+
+        int newPage = DuoWanUtils.getImagePageID() + 1 - page;
+        String url = "http://tu.duowan.com/scroll/" + newPage + ".html";
+        Parser parser = new DuoWanParser();
 
         setAttr("page", page);
         try {

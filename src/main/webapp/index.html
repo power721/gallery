@@ -29,6 +29,7 @@
     <button id="sexy" class="gallery btn btn-block">sexy</button>
     <button id="qsbk" class="gallery btn btn-block">qsbk</button>
     <button id="haha" class="gallery btn btn-block">haha</button>
+    <button id="duowan" class="gallery btn btn-block">duowan</button>
 </div>
 <div id="content"></div>
 <div id="loader">
@@ -40,7 +41,7 @@
 <script type="text/javascript">
     var data = Cookies.getJSON('data');
     if (!data) {
-        data = {'type': 'haha', 'dbmz': 1, 'meizi': 1, 'sexy': 1, 'qsbk': 1, 'haha': 1};
+        data = {'type': 'haha', 'dbmz': 1, 'meizi': 1, 'sexy': 1, 'qsbk': 1, 'haha': 1, 'duowan' : 1};
         Cookies.set('data', data);
     }
     var page = getPage();

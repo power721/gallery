@@ -35,7 +35,7 @@ class RestHandler extends Handler {
      */
     private final RestRoutes routes;
 
-//    private String viewPostfix;
+    //    private String viewPostfix;
 
     /**
      * construct RestHandler with the RestRoutes
@@ -46,13 +46,13 @@ class RestHandler extends Handler {
         this.routes = routes;
     }
 
-//    public RestHandler(RestRoutes routes, String viewPostfix) {
-//        if (StrKit.isBlank(viewPostfix) || !viewPostfix.contains(".")) {
-//            throw new IllegalArgumentException("invalid view postfix.");
-//        }
-//        this.routes = routes;
-//        this.viewPostfix = viewPostfix;
-//    }
+    //    public RestHandler(RestRoutes routes, String viewPostfix) {
+    //        if (StrKit.isBlank(viewPostfix) || !viewPostfix.contains(".")) {
+    //            throw new IllegalArgumentException("invalid view postfix.");
+    //        }
+    //        this.routes = routes;
+    //        this.viewPostfix = viewPostfix;
+    //    }
 
     @Override
     public void handle(String target, HttpServletRequest request, HttpServletResponse response, boolean[] isHandled) {
@@ -74,9 +74,9 @@ class RestHandler extends Handler {
         }
 
         isHandled[0] = true;
-//        if (viewPostfix != null) {
-//            newTarget = newTarget.replace(viewPostfix, "");
-//        }
+        //        if (viewPostfix != null) {
+        //            newTarget = newTarget.replace(viewPostfix, "");
+        //        }
         nextHandler.handle(newTarget, request, response, isHandled);
     }
 

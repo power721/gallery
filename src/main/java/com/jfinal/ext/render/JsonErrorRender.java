@@ -54,11 +54,10 @@ public class JsonErrorRender extends JsonRender {
     /**
      * render the HTTP response
      */
-    @Override
-    public void render() {
+    @Override public void render() {
         String error = ERROR_CODES.get(errorCode);
-        request.setAttribute("error", error != null ? error :
-                "Internal Server Error(invalid error code" + errorCode + ")");
+        request.setAttribute("error",
+            error != null ? error : "Internal Server Error(invalid error code" + errorCode + ")");
         response.setStatus(errorCode);
         super.render();
     }

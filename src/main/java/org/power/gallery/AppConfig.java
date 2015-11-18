@@ -25,32 +25,27 @@ public class AppConfig extends JFinalConfig {
         JFinal.start("src/main/webapp", 8080, "/", 5);
     }
 
-    @Override
-    public void configConstant(Constants me) {
+    @Override public void configConstant(Constants me) {
         LOGGER.trace("configConstant");
         me.setMainRenderFactory(new IMainRenderFactory() {
-            @Override
-            public Render getRender(String view) {
+            @Override public Render getRender(String view) {
                 return new JsonRender();
             }
 
-            @Override
-            public String getViewExtension() {
+            @Override public String getViewExtension() {
                 return null;
             }
         });
 
         me.setErrorRenderFactory(new IErrorRenderFactory() {
-            @Override
-            public Render getRender(int errorCode, String view) {
+            @Override public Render getRender(int errorCode, String view) {
                 return new JsonErrorRender(errorCode);
             }
         });
         me.setDevMode(true);
     }
 
-    @Override
-    public void configRoute(Routes me) {
+    @Override public void configRoute(Routes me) {
         String packagePath = "/" + this.getClass().getPackage().getName().replace('.', '/');
         String classPath = this.getClass().getResource("").getPath().replace(packagePath, "");
         LOGGER.trace("configRoute {}", classPath);
@@ -58,18 +53,15 @@ public class AppConfig extends JFinalConfig {
         RestKit.buildRoutes("/v0", classPath, me, "org.power.gallery.api");
     }
 
-    @Override
-    public void configPlugin(Plugins me) {
+    @Override public void configPlugin(Plugins me) {
         LOGGER.trace("configPlugin");
     }
 
-    @Override
-    public void configInterceptor(Interceptors me) {
+    @Override public void configInterceptor(Interceptors me) {
         LOGGER.trace("configInterceptor");
     }
 
-    @Override
-    public void configHandler(Handlers me) {
+    @Override public void configHandler(Handlers me) {
         LOGGER.trace("configHandler");
         RestKit.buildHandler(me);
     }

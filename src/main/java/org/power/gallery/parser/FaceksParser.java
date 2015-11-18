@@ -81,6 +81,9 @@ public class FaceksParser implements Parser {
     private String getImageId(String imageUrl) {
         int start = imageUrl.lastIndexOf('/');
         int end = imageUrl.lastIndexOf('.');
+        if (end == -1) {
+            end = imageUrl.length();
+        }
 
         return imageUrl.substring(start + 1, end);
     }

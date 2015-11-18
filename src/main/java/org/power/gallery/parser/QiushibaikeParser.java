@@ -41,7 +41,8 @@ public class QiushibaikeParser implements Parser {
             String content = (String) item.get("content");
             String href = "http://www.qiushibaike.com/article/" + imageId;
 
-            String imageUrl = "http://pic.qiushibaike.com/system/pictures/" + prefix + "/" + imageId + "/medium/" + imageSrc;
+            String imageUrl =
+                "http://pic.qiushibaike.com/system/pictures/" + prefix + "/" + imageId + "/medium/" + imageSrc;
             LOGGER.debug(imageUrl);
             Image image = new Image(imageId, imageUrl, content);
             image.setHref(href);
