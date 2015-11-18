@@ -95,6 +95,9 @@
 
     function getPage() {
         var page = data[data.type];
+        if (isNaN(page)) {
+            page = 1;
+        }
         $('#page').text(page);
         return parseInt(page);
     }
