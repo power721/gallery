@@ -18,7 +18,7 @@ public class FaceksParser implements Parser {
 
     private static final Logger LOGGER = LogManager.getLogger(FaceksParser.class);
 
-    private static LRUCache<String, String> cache = new LRUCache<String, String>(10);
+    private static LRUCache<String, String> cache = new LRUCache<String, String>(20);
 
     private int page;
 
