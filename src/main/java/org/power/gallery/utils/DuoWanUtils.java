@@ -22,8 +22,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -89,7 +87,7 @@ public class DuoWanUtils {
     }
 
     private static String getLocation(String url) throws IOException {
-        final List<String> urls = new ArrayList<>();
+        final StringHolder stringHolder = new StringHolder(url);
         CloseableHttpClient httpClient = HttpClients.custom().setRedirectStrategy(new RedirectStrategy() {
             @Override public boolean isRedirected(HttpRequest request, HttpResponse response, HttpContext context)
                 throws ProtocolException {
@@ -100,7 +98,7 @@ public class DuoWanUtils {
             @Override public HttpUriRequest getRedirect(HttpRequest request, HttpResponse response, HttpContext context)
                 throws ProtocolException {
                 String location = response.getFirstHeader("Location").getValue().replace("gallery", "scroll");
-                urls.add(location);
+                stringHolder.setValue(location);
                 return new HttpGet(location);
             }
         }).build();
@@ -132,7 +130,7 @@ public class DuoWanUtils {
         } finally {
             IOUtils.closeQuietly(httpClient);
         }
-        return urls.isEmpty() ? "" : urls.get(0);
+        return stringHolder.getValue();
     }
 
     public static String getHtml4DuoWan(final String url) throws IOException {
@@ -179,4 +177,22 @@ public class DuoWanUtils {
         }
     }
 
+    private static class StringHolder {
+        private String value;
+
+        public StringHolder() {
+        }
+
+        public StringHolder(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public void setValue(String value) {
+            this.value = value;
+        }
+    }
 }

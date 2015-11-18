@@ -51,12 +51,12 @@ public class DuoWanParser implements Parser {
 
             elements = doc.select(".mod-page .current");
             if (elements.isEmpty()) {
-//                LOGGER.info("break {}", pageUrl);
+                //                LOGGER.info("break {}", pageUrl);
                 break;
             }
             Element element = elements.get(0).nextElementSibling();
             if (element == null) {
-//                LOGGER.info("break next {}", pageUrl);
+                //                LOGGER.info("break next {}", pageUrl);
                 break;
             }
             pageUrl = BASE_URL + element.attr("href");
