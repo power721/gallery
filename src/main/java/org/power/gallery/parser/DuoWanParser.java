@@ -43,7 +43,7 @@ public class DuoWanParser implements Parser {
                     String imageId = getImageId(imageUrl);
                     String title = element.parent().nextElementSibling().text();
                     Image image = new Image(imageId, imageUrl, title);
-                    image.setHref(imageUrl);
+                    image.setHref(pageUrl);
                     images.add(image);
                     //                LOGGER.info(image);
                 }
